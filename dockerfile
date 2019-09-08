@@ -17,4 +17,4 @@ RUN cd web && yarn build && cp -r build ../build
 
 EXPOSE 8080
 
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]

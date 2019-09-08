@@ -9,6 +9,6 @@
     "scrape-it": "^5.1.4"
   },
   "scripts": {
-    "start": "set DEBUG=express:* & nodemon server"
+    "start": "set DEBUG=express:* & node --inspect=0.0.0.0 server.js"
   }
 }

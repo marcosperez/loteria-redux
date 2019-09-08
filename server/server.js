@@ -11,7 +11,7 @@ app.use(cors());
 app.use("/", express.static("build"));
 
 app.get("/api/v1/results/:source", (req, res) => {
-  var source = req.param("source");
+  var source = req.params.source;
 
   res.json(resultRepository.getResults(source));
 });

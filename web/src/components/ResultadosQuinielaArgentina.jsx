@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import { connect } from 'react-redux';
 
 function ResultadoSorteo(params) {
   return (
@@ -39,6 +40,7 @@ function ResultadoLista(params) {
     </React.Fragment>
   );
 }
+3
 
 function ResultadosQuinielaArgentina() {
   const [results, setResults] = useState([]);
@@ -57,7 +59,10 @@ function ResultadosQuinielaArgentina() {
 
   return (
     <div className="ResultadosQuinielaArgentina" style={{display: "flex",  flexWrap: "wrap"}}>
-      {results &&
+      <select name="cars" style={{padding:15 , flex:"1 1 auto", fontSize: 20 }}>
+        {Object.keys(results).map(sorteo => <option value="volvo">{sorteo}</option>)}
+    </select>
+      {/* {results &&
         Object.keys(results).map(sorteo => {
           let resultSorteos = results[sorteo];
           return (
@@ -70,7 +75,8 @@ function ResultadosQuinielaArgentina() {
             </div>
             </div>
           );
-        })}
+        })} */}
+        {/* <ResultadoSorteo resultSorteos={resultSorteos} sorteo={sorteo}/> */}
     </div>
   );
 }
