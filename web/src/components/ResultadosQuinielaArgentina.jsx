@@ -1,82 +1,90 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 function ResultadoSorteo(params) {
   return (
-      <React.Fragment >
-      {params.resultSorteos &&
-        Object.keys(params.resultSorteos).map((sorteoTipo, index) => {
+    <React.Fragment>
+      {params.results &&
+        Object.keys(params.results).map((sorteoTipo, index) => {
           return (
-            <div style={{flex:"1 1 auto"}} key={`${params.sorteo}-${index}`}>
-              <div
-                
-                style={{ paddingTop: 20, paddingBottom: 5}}
-              >
+            <div style={{ flex: "1 1 auto" }} key={`${params.sorteo}-${index}`}>
+              <div style={{ paddingTop: 20, paddingBottom: 5 }}>
                 {sorteoTipo}
               </div>
-              <div style={{ paddingTop: 5, paddingBottom: 5}}>  
-                <ResultadoLista resultados={params.resultSorteos[sorteoTipo]} sorteoTipo={sorteoTipo}/> 
+              <div style={{ paddingTop: 5, paddingBottom: 5 }}>
+                <ResultadoLista
+                  results={params.results[sorteoTipo]}
+                  sorteoTipo={sorteoTipo}
+                />
               </div>
-            </div>
-          );
-        })}
-        </React.Fragment>
-  );
-}
-
-function ResultadoLista(params) {
-  return (
-    <React.Fragment>
-      {params.resultados.map((valor, index) => {
-          return (
-            <div key={`${params.sorteoTipo}-${index}`}
-              style={{ padding: 5}}
-            >
-              {valor}
             </div>
           );
         })}
     </React.Fragment>
   );
 }
-3
+
+function ResultadoLista(params) {
+  return (
+    <React.Fragment>
+      {params.results.map((valor, index) => {
+        return (
+          <div key={`${params.sorteoTipo}-${index}`} style={{ padding: 5 }}>
+            {valor}
+          </div>
+        );
+      })}
+    </React.Fragment>
+  );
+}
 
 function ResultadosQuinielaArgentina() {
   const [results, setResults] = useState([]);
+  const [sorteoSeleccionado, setSorteoSeleccionado] = useState("");
 
   useEffect(() => {
-    
     // Actualiza el título del documento usando la API del navegador
     // Axios.get(`http://${window.location.host}/api/v1/results/quinielasargentinas`).then(
     Axios.get(`http://localhost:8080/api/v1/results/quinielasargentinas`).then(
       res => {
-        setResults(res.data);
+        if (res.data) {
+          setResults(res.data);
+          setSorteoSeleccionado(Object.keys(res.data)[0]);
+        }
       }
     );
-    
-  },[]);
-
+  }, []);
   return (
-    <div className="ResultadosQuinielaArgentina" style={{display: "flex",  flexWrap: "wrap"}}>
-      <select name="cars" style={{padding:15 , flex:"1 1 auto", fontSize: 20 }}>
-        {Object.keys(results).map(sorteo => <option value="volvo">{sorteo}</option>)}
-    </select>
-      {/* {results &&
-        Object.keys(results).map(sorteo => {
-          let resultSorteos = results[sorteo];
-          return (
-            <div key={sorteo} style={{ flex:"1 1 auto" }}>
-              <div style={{ padding: 10, marginTop: 20}}>
-                <strong>{sorteo}</strong>
-              </div>
-              <div style={{width: "100%",display: "flex",  flexWrap: "wrap"}}>
-                <ResultadoSorteo resultSorteos={resultSorteos} sorteo={sorteo}/>
-            </div>
-            </div>
+    <div
+      className="ResultadosQuinielaArgentina"
+      style={{ display: "flex", flexWrap: "wrap" }}
+    >
+      <select
+        name="cars"
+        style={{ padding: 15, flex: "1 1 auto", fontSize: 20 }}
+        value={sorteoSeleccionado}
+        onChange={event => {
+          setSorteoSeleccionado(
+            Object.keys(results)[event.target.selectedIndex]
           );
-        })} */}
-        {/* <ResultadoSorteo resultSorteos={resultSorteos} sorteo={sorteo}/> */}
+        }}
+      >
+        {Object.keys(results).map(sorteo => (
+          <option key={sorteo} value="sorteo">
+            {sorteo}
+          </option>
+        ))}
+      </select>
+
+      {sorteoSeleccionado && (
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+          <ResultadoSorteo
+            results={results[sorteoSeleccionado]}
+            sorteo={sorteoSeleccionado}
+          />
+        </div>
+      )}
     </div>
   );
 }
