@@ -4,3 +4,8 @@
 ```
 npm install
 ```
+
+## iniciar servidor
+```
+yarn start
+```

@@ -44,9 +44,7 @@ function ResultadosQuinielaArgentina() {
   const [sorteoSeleccionado, setSorteoSeleccionado] = useState("");
 
   useEffect(() => {
-    // Actualiza el título del documento usando la API del navegador
-    // Axios.get(`http://${window.location.host}/api/v1/results/quinielasargentinas`).then(
-    Axios.get(`http://localhost:8080/api/v1/results/quinielasargentinas`).then(
+    Axios.get("http://localhost:8080/api/v1/results/quinielasargentinas").then(
       res => {
         if (res.data) {
           setResults(res.data);
