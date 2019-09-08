@@ -1,45 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-// import { connect } from 'react-redux';
+import ResultadoSorteo from "./ResultadoSorteo";
 
-function ResultadoSorteo(params) {
-  return (
-    <React.Fragment>
-      {params.results &&
-        Object.keys(params.results).map((sorteoTipo, index) => {
-          return (
-            <div style={{ flex: "1 1 auto" }} key={`${params.sorteo}-${index}`}>
-              <div style={{ paddingTop: 20, paddingBottom: 5 }}>
-                {sorteoTipo}
-              </div>
-              <div style={{ paddingTop: 5, paddingBottom: 5 }}>
-                <ResultadoLista
-                  results={params.results[sorteoTipo]}
-                  sorteoTipo={sorteoTipo}
-                />
-              </div>
-            </div>
-          );
-        })}
-    </React.Fragment>
-  );
-}
-
-function ResultadoLista(params) {
-  return (
-    <React.Fragment>
-      {params.results.map((valor, index) => {
-        return (
-          <div key={`${params.sorteoTipo}-${index}`} style={{ padding: 5 }}>
-            {valor}
-          </div>
-        );
-      })}
-    </React.Fragment>
-  );
-}
-
-function ResultadosQuinielaArgentina() {
+function QuinielaArgentinaSelector() {
   const [results, setResults] = useState([]);
   const [sorteoSeleccionado, setSorteoSeleccionado] = useState("");
 
@@ -87,4 +50,4 @@ function ResultadosQuinielaArgentina() {
   );
 }
 
-export default ResultadosQuinielaArgentina;
+export default QuinielaArgentinaSelector;

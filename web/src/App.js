@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import ResultadosQuinielaArgentina from "./components/ResultadosQuinielaArgentina";
+import QuinielaArgentinaSelector from "./components/QuinielaArgentinaSelector";
 // import { Provider } from "react-redux";
 // import store from "./store";
 
@@ -8,7 +8,7 @@ function App() {
   return (
     // <Provider store={store}>
     <div className="App">
-      <ResultadosQuinielaArgentina></ResultadosQuinielaArgentina>
+      <QuinielaArgentinaSelector></QuinielaArgentinaSelector>
     </div>
     // </Provider>
   );
