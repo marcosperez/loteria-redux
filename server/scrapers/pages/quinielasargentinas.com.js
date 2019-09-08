@@ -27,17 +27,20 @@ function obtenerResultados() {
       {
         celdas: {
           listItem: "table.table_cabezas td"
+        },
+        sorteos: {
+          listItem: "td.td_tit_cabeza"
         }
       }
     )
       .then(({ data, response }) => {
-        const s1 = data.celdas[0];
+        const s1 = data.sorteos[0];
         const r1 = data.celdas.slice(1, 81);
-        const s2 = data.celdas[81];
+        const s2 = data.sorteos[1];
         const r2 = data.celdas.slice(82, 162);
-        const s3 = data.celdas[162];
+        const s3 = data.sorteos[2];
         const r3 = data.celdas.slice(163, 263);
-        const s4 = data.celdas[263];
+        const s4 = data.sorteos[3];
         const r4 = data.celdas.slice(264);
 
         resultados = {};

@@ -13,16 +13,16 @@
             "localRoot": "${workspaceFolder}/server",
             "remoteRoot": "/home/node/app",
             "protocol": "inspector",
-            "restart": true
+            "restart": true,
         },
-        
-        
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/server.js"
-        }
-        
+            "program": "${workspaceFolder}/server/server.js",
+            "args": ["--inspect=0.0.0.0"],
+            "env": {"DEBUG":"express:*"},  
+            "cwd": "${workspaceFolder}/server"
+        },
     ]
 }
