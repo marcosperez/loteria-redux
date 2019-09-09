@@ -8,6 +8,9 @@
     "nodemon": "^1.19.2",
     "scrape-it": "^5.1.4"
   },
+  "devDependencies": {
+    "braces": ">=2.3.1"
+  },
   "scripts": {
     "start": "set DEBUG=express:* & node --inspect=0.0.0.0 server.js"
   }
