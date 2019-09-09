@@ -17,7 +17,8 @@ const reducerLoteria = (state = initialState, action) => {
     case CARGAR_RESULTADOS:
       return {
         ...state,
-        resultadosLoterias: action.resultados
+        resultadosLoterias: action.resultados,
+        loteriaSeleccionada: Object.keys(action.resultados)[0]
       };
 
     default:
